@@ -94,5 +94,14 @@
         remote_src: true
         force: yes
       delegate_to: node03
+      notify: restart httpd
+
+  handlers:
+    - name: restart httpd
+      systemd:
+        name: httpd
+        state: restarted
+        enabled: yes
+      delegate_to: node03
 
 
