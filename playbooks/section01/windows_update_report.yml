@@ -5,7 +5,7 @@
 
   vars:
     report_path: 'C:\ansible_reports'
-    update_catagory:
+    update_category:
     
   tasks:
   
@@ -16,12 +16,12 @@
 
     - name: Show us the updates
       debug:
-        msg: "{{ update_catagory }}"
+        msg: "{{ update_category }}"
 
     - name: Check available updates
       ansible.windows.win_updates:
         category_names: 
-         - "{{ update_catagory | default(omit) }}"
+         - "{{ update_category | default(omit) }}"
         state: searched
       register: update_result
      
