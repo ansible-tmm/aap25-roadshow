@@ -40,7 +40,7 @@
     
     - name: Execute PowerShell script to clone the Git repository
       win_shell: |
-        $repositoryUrl = "https://github.com/nmartins0611/aap25-roadshow-content.git"
+        $repositoryUrl = "http://gitea:3000/student/aap25-roadshow-content.git"
         $targetFolder = "C:\repo"
 
         # Ensure the target folder does not already exist
