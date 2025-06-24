@@ -22,17 +22,17 @@
       - httpd
 
   tasks:
-    - name: Configure static IP on eth1 without gateway
-      community.general.nmcli:
-        conn_name: eth1
-        ifname: eth1
-        type: ethernet
-        ip4: 192.168.1.101/24
-        gw4: ''
-        dns4:
-          - 192.168.1.100
-        state: present
-        autoconnect: yes
+   - name: Configure static IP on eth1 without gateway
+     community.general.nmcli:
+       conn_name: eth1
+       ifname: eth1
+       type: ethernet
+       ip4: 192.168.1.101/24
+       gw4: ''
+       dns4:
+         - 192.168.1.100
+       state: present
+       autoconnect: yes
         
    - name: Install required packages
      ansible.builtin.yum:
