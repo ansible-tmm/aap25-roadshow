@@ -10,10 +10,10 @@
     wins_domain: "{{ ansible_interfaces[0].dns_domain }}"
     interface_name: "Ethernet Instance 0"
     static_ip: "192.168.1.100"
-    subnet_prefix: 24
+    subnet_netmask: 255.255.255.0
   tasks:
     - name: Set static IP address on "{{ interface_name }}"
-      ansible.windows.win_shell: netsh interface ipv4 set address name="{{ interface_name }}" static {{ static_ip }} {{ subnet_prefix }} none
+      ansible.windows.win_shell: netsh interface ipv4 set address name="{{ interface_name }}" static {{ static_ip }} {{ subnet_netmask }} none
 
     - name: To view dns_domain from network segment
       ansible.builtin.debug:
