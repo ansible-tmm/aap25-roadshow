@@ -31,6 +31,6 @@
       hostname: "{{ inventory_hostname }}"
       domain_admin_user: Administrator
       domain_admin_password: "{{ safe_password }}"
-      domain_server: "{{ domain_controller }}"
+      domain_server: "windows"
       state: domain
       reboot: true
