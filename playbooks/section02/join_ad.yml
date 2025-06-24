@@ -8,27 +8,16 @@
     - windows_auth
   vars:
     wins_domain: "{{ ansible_interfaces[0].dns_domain }}"
-    domain_controller: 
-    dns_ip:
-
+    domain_controller: 192.168.1.100
+    interface_name: "Ethernet Instance 0"
+    static_ip: "192.168.1.101"
+    subnet_netmask: 255.255.255.0
   tasks:
   
-   - name: Store Domain controller IP
-     set_fact:
-      ad_hostname: windows.{{ ansible_interfaces[0].dns_domain }}
-
-   - name: Remove trailing dot
-     set_fact:
-      hostname_cleaned: "{{ ad_hostname | regex_replace('\\.$', '') }}"
-
-   - name: Resolve DNS server hostname to IP
-     set_fact:
-      dns_server_ip: "{{ lookup('dig', ad_hostname) }}"
-
    - name: Set a single address on the adapter named Ethernet
      ansible.windows.win_dns_client:
-      adapter_names: Ethernet
-      dns_servers: "{{ dns_server_ip }}"
+      adapter_names: "{{ interface_name }}"
+      dns_servers: "{{ domain_controller }}"
 
    - name: Ensure local Administrator account has a password
      ansible.windows.win_user:
@@ -41,6 +30,6 @@
       hostname: "{{ inventory_hostname }}"
       domain_admin_user: Administrator
       domain_admin_password: "{{ safe_password }}"
-      domain_server: "{{ dns_server_ip }}"
+      domain_server: "{{ domain_controller }}"
       state: domain
       reboot: true
