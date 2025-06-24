@@ -13,14 +13,7 @@
     subnet_prefix: 24
   tasks:
     - name: Set static IP address on "{{ interface_name }}"
-      ansible.windows.win_netadapter:
-        name: "{{ interface_name }}"
-        ipv4_addresses:
-          - "{{ static_ip }}"
-        ipv4_subnet_mask: "{{ subnet_prefix }}"
-        ipv4_dhcp: "no"
-        state: present
-      register: ip_config_result
+      ansible.windows.win_shell: netsh interface ipv4 set address name="{{ interface_name }}" static {{ static_ip }} {{ subnet_prefix }} none
 
     - name: To view dns_domain from network segment
       ansible.builtin.debug:
