@@ -8,34 +8,39 @@
     - windows_auth
   vars:
     wins_domain: "{{ ansible_interfaces[0].dns_domain }}"
-
+    interface_name: "Ethernet Instance 0"
+    static_ip: "192.168.1.100"
+    subnet_netmask: 255.255.255.0
   tasks:
+    - name: Set static IP address on "{{ interface_name }}"
+      ansible.windows.win_shell: netsh interface ipv4 set address name="{{ interface_name }}" static {{ static_ip }} {{ subnet_netmask }} none
 
-   - name: To view dns_domain from network segment
-     ansible.builtin.debug:
-      msg: "{{ ansible_interfaces[0].dns_domain }}"
+    - name: To view dns_domain from network segment
+      ansible.builtin.debug:
+        msg: "{{ ansible_interfaces[0].dns_domain }}"
 
-   - name: Ensure local Administrator account has a password
-     ansible.windows.win_user:
+    - name: Ensure local Administrator account has a password
+      ansible.windows.win_user:
         name: "{{ username }}"
         password: "{{ user_password }}"
 
-   - name: Promote system to a domain Controller
-     microsoft.ad.domain:
-      dns_domain_name: "{{ wins_domain }}"
-      safe_mode_password: "{{ safe_password }}"
-      domain_mode: Win2025
-      forest_mode: Win2025
-      reboot: true
-
-   - name: Firewall rule to allow RDP on TCP port 5986
-     win_firewall_rule:
-      name: WinRM     
-      localport: 5986
-      action: allow
-      direction: in
-      protocol: tcp
-      profiles: domain,private,public
-      state: present
-      enabled: yes        
+    - name: Promote system to a domain Controller
+      microsoft.ad.domain:
+        dns_domain_name: "{{ wins_domain }}"
+        safe_mode_password: "{{ safe_password }}"
+        install_dns: true
+        domain_mode: Win2025
+        forest_mode: Win2025
+        reboot: true
+    
+    - name: Firewall rule to allow RDP on TCP port 5986
+      win_firewall_rule:
+        name: WinRM     
+        localport: 5986
+        action: allow
+        direction: in
+        protocol: tcp
+        profiles: domain,private,public
+        state: present
+        enabled: yes        
 
