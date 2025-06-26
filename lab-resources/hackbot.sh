@@ -3,7 +3,7 @@
 # File to store the token
 TOKEN_FILE="auth_token.txt"
 
-export CONTROLLER_URL="https://$HOSTNAME.$_SANDBOX_ID.instruqt.io/api/controller"
+export CONTROLLER_URL="https://$HOSTNAME/api/controller"
 echo $CONTROLLER_URL
 
 # Colors for robot-like appearance
