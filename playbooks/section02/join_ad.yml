@@ -34,3 +34,23 @@
       domain_server: "windows"
       state: domain
       reboot: true
+
+   - name: Configure Windows Firewall to allow WinRM
+     ansible.windows.win_firewall_rule:
+       name: "Windows Remote Management (HTTP-In)"
+       localport: 5985
+       action: allow
+       direction: in
+       protocol: tcp
+       profiles: [domain, private, public]
+       state: present
+   
+   - name: Configure Windows Firewall to allow WinRM HTTPS
+     ansible.windows.win_firewall_rule:
+       name: "Windows Remote Management (HTTPS-In)"
+       localport: 5986
+       action: allow
+       direction: in
+       protocol: tcp
+       profiles: [domain, private, public]
+       state: present
