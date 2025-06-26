@@ -35,24 +35,24 @@
       state: domain
       reboot: true
 
-    - name: Firewall rule to allow RDP on TCP port 5986
-      win_firewall_rule:
-        name: WinRM     
-        localport: 5986
-        action: allow
-        direction: in
-        protocol: tcp
-        profiles: domain,private,public
-        state: present
-        enabled: yes
+   - name: Firewall rule to allow RDP on TCP port 5986
+     win_firewall_rule:
+       name: WinRM     
+       localport: 5986
+       action: allow
+       direction: in
+       protocol: tcp
+       profiles: domain,private,public
+       state: present
+       enabled: yes
 
-    - name: Firewall rule to allow RDP on TCP port 5985
-      win_firewall_rule:
-        name: WinRM     
-        localport: 5985
-        action: allow
-        direction: in
-        protocol: tcp
-        profiles: domain,private,public
-        state: present
-        enabled: yes 
+   - name: Firewall rule to allow RDP on TCP port 5985
+     win_firewall_rule:
+       name: WinRM     
+       localport: 5985
+       action: allow
+       direction: in
+       protocol: tcp
+       profiles: domain,private,public
+       state: present
+       enabled: yes 
