@@ -31,7 +31,7 @@
         install_dns: true
         domain_mode: Win2025
         forest_mode: Win2025
-        reboot: false
+        reboot: true
     
     - name: Firewall rule to allow RDP on TCP port 5986
       win_firewall_rule:
