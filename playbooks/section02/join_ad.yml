@@ -33,5 +33,5 @@
       domain_admin_password: "{{ safe_password }}"
       domain_server: "windows"
       state: domain
-      reboot: false
+      reboot: true
 
