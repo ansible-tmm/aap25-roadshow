@@ -7,6 +7,7 @@
       win_chocolatey:
         name: chocolatey
         state: present
+        version: 1.4.3
 
     - name: Install multiple packages sequentially
       win_chocolatey:
