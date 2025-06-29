@@ -65,6 +65,9 @@
          ansible.builtin.command: /bin/bash -c "echo {{ admin_password }} | realm join --membership-software=samba --user={{ admin_username }} {{ domain }}"
    #      no_log: True
          register: join_output
+         delay: 30
+         retries: 3
+         until: join_output is success
 
        - name: Display success message
          ansible.builtin.debug:
