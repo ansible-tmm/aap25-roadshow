@@ -29,8 +29,8 @@
         dns_domain_name: "{{ wins_domain }}"
         safe_mode_password: "{{ safe_password }}"
         install_dns: true
-        domain_mode: Win2025
-        forest_mode: Win2025
+        domain_mode: Win2012R2
+        forest_mode: Win2012R2
         reboot: true
     
     - name: Firewall rule to allow RDP on TCP port 5986
