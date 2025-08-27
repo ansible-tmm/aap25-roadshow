@@ -61,10 +61,10 @@ fi
 # Display menu
 function show_menu() {
     echo -e "${GREEN}"
-    echo "1. Simulate the faulty Web Change"
-    echo "2. Reset Web Application Config"
-    echo "3. Break the network!"
-    echo "4. Patch in a new device"
+    echo "1. Simulate the faulty Web Change - ( Break Web-Application Template )"
+    echo "2. Reset Web Application Config - ( Restore Web-Application Template )"
+    echo "3. Break the network! - ( Disable Port Template )"
+    echo "4. Patch in a new device - ( Make Port Active  Template )"
     echo "5. Clear stored token"
     echo "6. Exit"
     echo -e "${RESET}"
