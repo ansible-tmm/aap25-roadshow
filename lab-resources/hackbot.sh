@@ -126,3 +126,4 @@ while true; do
     perform_action $choice
     echo -e "${CYAN}🤖 Task complete!${RESET}"
     echo ""
+done
