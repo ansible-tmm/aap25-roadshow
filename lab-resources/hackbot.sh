@@ -40,7 +40,7 @@ function clear_token_and_restart() {
 # Prompt for the token and confirm it
 function get_auth_token() {
     while true; do
-        echo -n -e "${CYAN}🤖 Hello! I am your co-worker simulator S.E.A.N - Please provide your authorization token: ${RESET}"
+        echo -n -e "${CYAN}🤖 Hello! I am your co-worker simulator S.E.A.N v4 - Please provide your authorization token: ${RESET}"
         read -s AUTH_TOKEN
         echo -e "\n${CYAN}🤖 You entered: ${GREEN}$AUTH_TOKEN${RESET}"
         echo -n -e "${CYAN}🤖 Is this correct? (yes/no): ${RESET}"
