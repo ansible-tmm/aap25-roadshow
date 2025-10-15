@@ -9,12 +9,12 @@
        topic: network
 
   rules:
-   # - name: Port is down
-   #   condition: event.body.fields.admin_status == "DOWN"
-   #   action:
-   #     run_job_template:
-   #      organization: "Default"
-   #      name: "Resolve Port Status"
+   - name: Port is down
+     condition: event.body.fields.admin_status == "DOWN"
+     action:
+       run_job_template:
+        organization: "Default"
+        name: "Resolve Port Status"
 
    - name: Port to be configured
      condition: event.body.name == "ceos2" and event.body.fields.admin_status == "UP"
