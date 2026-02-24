@@ -24,6 +24,12 @@
         dest: /var/www/html
         remote_src: true
 
+    - name: Tag the page
+      ansible.builtin.lineinfile:
+       path: /var/www/html/index.html
+       line: "This is running on the RHEL Host"
+       insertafter: "<p>&copy; 2024 TMM - Where comedy lives. All rights reserved.</p>"
+
     - name: Start httpd service
       ansible.builtin.service:
         name: httpd
