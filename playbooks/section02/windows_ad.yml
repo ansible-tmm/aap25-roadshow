@@ -8,7 +8,7 @@
     - windows_auth
   vars:
     wins_domain: "{{ ansible_interfaces[0].dns_domain }}"
-    interface_name: "Ethernet"
+    interface_name: "Ethernet 0"
     static_ip: "192.168.1.100"
     subnet_netmask: 255.255.255.0
   tasks:
