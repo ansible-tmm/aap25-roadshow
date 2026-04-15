@@ -14,7 +14,7 @@
        name: '{{ item }}'
        state: present
       loop:
-        - procexp
+        # - procexp  # disabled — Chocolatey checksum mismatch with upstream binary
         - windirstat
         - 7zip
         - git
