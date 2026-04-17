@@ -8,10 +8,20 @@
     - windows_auth
   vars:
     wins_domain: "{{ ansible_interfaces[0].dns_domain }}"
-    interface_name: "Ethernet 2"
     static_ip: "192.168.1.100"
     subnet_netmask: 255.255.255.0
   tasks:
+    - name: Get secondary network adapter name
+      ansible.windows.win_shell: |
+        $defaultIfIndex = (Get-NetRoute -DestinationPrefix '0.0.0.0/0' | Sort-Object RouteMetric | Select-Object -First 1).InterfaceIndex
+        (Get-NetAdapter | Where-Object { $_.Status -eq 'Up' -and $_.InterfaceIndex -ne $defaultIfIndex } | Select-Object -First 1).Name
+      register: r_adapter
+      changed_when: false
+
+    - name: Set interface name fact
+      ansible.builtin.set_fact:
+        interface_name: "{{ r_adapter.stdout | trim }}"
+
     - name: Set static IP address on "{{ interface_name }}"
       ansible.windows.win_shell: netsh interface ipv4 set address name="{{ interface_name }}" static {{ static_ip }} {{ subnet_netmask }} none
 
